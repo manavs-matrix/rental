@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <title>Campus Connect | Rental</title>
+    <script src="rental.js" defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins';
+            font-optical-sizing: auto;
+            font-weight: 50px;
+            font-style: normal;
+            text-align: center;
+        }
+
+        body {
+            background: #e9ecf5;
+        }
+
+        /* HEADER */
+        .header {
+            background: #6b07cf;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            padding: 5px;
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .button {
+            border: 6px solid rgb(255,249,249);
+            border-radius: 50%;
+            width: 65px;
+            height: 65px;
+            background-color: rgb(255,247,247);
+            justify-content: end;
+        }
+
+        .fa-circle-user {
+            font-size: 50px;
+        }
+
+        /* SEARCH CONTROLS */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .controls input, .controls select {
+            width: 40%;
+            padding: 12px;
+            border: 2px solid #7b0eff;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        /* ITEMS GRID */
+        .items-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 25px;
+            padding: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        .card button {
+            background: #7b0eff;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            margin-top: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .card button:hover {
+            background: #5d0acc;
+        }
+
+        /* MODAL BACKGROUND */
+        .modal {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* MODAL BOX */
+        .modal-content {
+            background: white;
+            padding: 25px;
+            width: 300px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* CLOSE BUTTON */
+        .close {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div><img src="Assests/logo_img.png" height="110px" width="auto"></div>
+        <div><img src="Assests/notes_name.png" height="80px"></div>
+        <div><button class="button"><i class="fa-solid fa-circle-user"></i></button></div>
+    </header>
+
+    <!-- SEARCH + FILTERS -->
+    <section class="controls">
+        <input type="text" id="searchBox" placeholder="Search for items...">
+
+        <select id="categoryFilter">
+            <option value="All">Filter by Category</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Books">Books</option>
+            <option value="Clothes">Clothes</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Shoes">Shoes</option>
+            <option value="Tech">Tech</option>
+        </select>
+    </section>
+
+    <!-- ITEMS GRID -->
+    <section class="items-container" id="itemsContainer">
+
+        <!-- Example Card -->
+        <div class="card" data-category="Books">
+            <img src="Assests/book.png" alt="Books">
+            <h3>Computer Science</h3>
+            <p>₹80/day</p>
+            <button>RENT NOW 🤝</button>
+        </div>
+
+        <div class="card" data-category="Tech">
+            <img src="Assests/calculator.png" alt="Calculator">
+            <h3>Calculator</h3>
+            <p>₹20/day</p>
+            <button>RENT NOW 🤝</button>
+        </div>
+
+        <div class="card" data-category="Clothes">
+            <img src="Assests/lab_coat.png" alt="Clothes">
+            <h3>Lab Coat</h3>
+            <p>₹50/day</p>
+            <button>RENT NOW 🤝</button>
+        </div>
+
+        <div class="card" data-category="Electronics">
+            <img src="Assests/laptop.webp" alt="Laptop">
+            <h3>Laptop</h3>
+            <p>₹5000/day</p>
+            <button>RENT NOW 🤝</button>
+        </div>
+
+        <div class="card" data-category="Clothes">
+            <img src="Assests/jacket.png" alt="Motherboard">
+            <h3>Jacket</h3>
+            <p>₹500/day</p>
+            <button>RENT NOW 🤝</button>
+        </div>
+        
+        <div class="card" data-category="Accessories">
+            <img src="Assests/watch.webp" alt="Watch">
+            <h3>Watch</h3>
+            <p>₹300/day</p>
+            <button>RENT NOW 🤝</button>
+        </div>
+        
+        <div class="card" data-category="Shoes">
+            <img src="Assests/shoes.avif" alt="shoes">
+            <h3>Shoes</h3>
+            <p>₹400/day</p>
+            <button>RENT NOW 🤝</button>
+        </div>
+
+        <div class="card" data-category="Electronics">
+            <img src="Assests/keyboard.webp" alt="keyboard">
+            <h3>Keyboard</h3>
+            <p>₹200/day</p>
+            <button>RENT NOW 🤝</button>
+        </div>
+
+        <div class="card" data-category="Tech">
+            <img src="Assests/earbuds.webp" alt="earbuds">
+            <h3>Earbuds</h3>
+            <p>₹100/day</p>
+            <button>RENT NOW 🤝</button>
+        </div>
+
+        <div class="card" data-category="Tech">
+            <img src="Assests/multimeter.jpg" alt="multimeter">
+            <h3>Multimeter</h3>
+            <p>₹150/day</p>
+            <button>RENT NOW 🤝</button>
+        </div>
+
+    </section>
+
+    <!-- RENT MODAL -->
+    <div id="rentModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2 id="modalItemName"></h2>
+            <p id="modalPrice"></p>
+
+            <label>Enter Days:</label>
+            <input type="number" id="rentDays" min="1" value="1">
+
+            <p><strong>Total Price: ₹<span id="totalPrice">0</span></strong></p>
+
+            <button id="confirmRent">Confirm Rent</button>
+        </div>
+    </div>
+
+    <!-- NO ITEMS FOUND TEXT -->
+    <h2 id="noItems" style="display:none; padding:20px; color:#555;">❌ No items found</h2>
+
+</body>
+</html>
